@@ -2,9 +2,10 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
-
 import postRoutes from './routes/posts.js';
 import userRouter from "./routes/user.js";
+
+require('dotenv').config();
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.get('/', (req, res) => {
     res.send('APP IS RUNNING.');
 });
 
-const CONNECTION_URL = 'your mongodb';
+const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
